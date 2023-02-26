@@ -1,0 +1,242 @@
+<!--<html>
+<head> 
+<title> View Ad</title>
+<style>
+table, th.x, td.x{border: 2px solid black;}
+div.y{position:absolute;
+      left: 35%;
+      top: 2%;
+      background-color:red;}
+</style>
+</head>
+<body>
+<script>
+num=0
+function post(){
+}
+</script>
+<table>
+<div class="y">Price
+<tr>
+<td class="x"><img src="C:\Users\monal\OneDrive\Desktop\html\bmw.jpg" alt="bmw" width="500px" height="200px"></img></td>
+</tr>00
+</div>
+<tr>
+<td><input type="text" placeholder="location" style="border: none;" readonly> </td>
+</tr>
+<tr>
+<td><input type="text" placeholder="Apartment" readonly></td>
+</tr>
+<tr>
+<td> <input type="text" placeholder="title" size="56" readonly></td>
+</tr>
+<tr>
+<td class="x"> <input type="submit" value="Call" style="width: 100px;">
+<input type="submit" value="email" style="width:100px;"></td>
+</tr>
+</table>
+</body>
+</html>-->
+
+
+<html>
+<head>
+<title> Display ad </title>
+<style>
+div.x{position:fixed;
+      top: 5%;
+      left: 30%;}
+div.z{position:fixed;
+      background-color: rgb(185,25,185);
+      width:100%;
+      height:20%;
+      display:block;
+      }
+</style>
+</head>
+<body>
+<script src=
+"https://www.gstatic.com/firebasejs/9.17.1/firebase-app.js">
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/firebase/7.14.1-0/firebase.js"></script>
+
+<div class="z">
+<div class="x">
+<table>
+<tr>
+<td><input type="text" placeholder="Search your location" style="width:500px; height:35px;"></td>
+</tr>
+<tr>
+<td><select id="beds">
+<option value="beds">Beds</option>
+<option value="1">1</option>
+<option value="1">2</option>
+<option value="1">3</option>
+<option value="1">4+</option>
+</select>
+<select id="type">
+<option value="type">Type</option>
+<option value="apartment">Apartment</option>
+<option value="Villa">Villa</option>
+<option value="th">Townhouses</option>
+</select>
+</td>
+</table>
+</div>
+</div>
+<script>
+const firebaseConfig = {
+    apiKey: "AIzaSyBY9tUM3SuWC4MQNBkVqqoSEr07R1xHclc",
+    authDomain: "realestate-3c316.firebaseapp.com",
+    databaseURL: "https://realestate-3c316-default-rtdb.firebaseio.com",
+    projectId: "realestate-3c316",
+    storageBucket: "realestate-3c316.appspot.com",
+    messagingSenderId: "267737955787",
+    appId: "1:267737955787:web:1a0e3c5e33a42abca58a4e"
+  };
+
+
+  // Initialize Firebase
+  firebase.initializeApp(firebaseConfig);
+countnum=0
+countx=0;
+countad=1
+const data=[]
+function calling(){
+alert("8148232341")}
+function mail(){
+alert("email@gmail.com")}
+function retrieved(){
+var ref = firebase.database().ref('/Ad Details/-Ad'+countad);
+ref.on("value", function(snapshot) {
+ snapshot.forEach(function(childSnapshot){
+   console.log(childSnapshot.val().location);
+   lction=childSnapshot.val().location
+   amenities=childSnapshot.val().amenities
+   descr=childSnapshot.val().descr
+   head=childSnapshot.val().head
+   img=childSnapshot.val().img
+   nature=childSnapshot.val().nature
+   price=childSnapshot.val().price
+   type=childSnapshot.val().type
+   email=childSnapshot.val().mail
+   phone=childSnapshot.val().phone
+   data.push([lction, amenities, descr, head, img, nature, price, type, email, phone])
+   x()})
+}, function (error) {
+   console.log("Error: " + error.code);
+});
+countad+=1
+}
+var ref = firebase.database().ref('/Ad Details/');
+ref.on('child_added', function(snapshot) {
+  countnum++;
+  // how do I know if this is the last child? i.e. the count is complete?
+});
+
+ref.on('value', function(snapshot) {
+countx+=countnum
+counter()
+});
+function counter(){
+for(; count<=countx;){
+retrieved()}}
+
+count=1
+ads="ad"+count
+tcount=1
+function x(){
+tr="tr"+tcount
+a=document.createElement("TABLE")
+a.style.border="1px solid black"
+a.id="ad"+count
+alert(a.id)
+count+=1
+document.getElementById("ad").appendChild(a)
+b=document.createElement("TR")
+b.id=tr
+tcount+=1
+document.getElementById(ads).appendChild(b)
+c=document.createElement("TD")
+c.style.border="1px solid black"
+d=document.createElement("IMG")
+d.src=img
+d.style.width="500px"
+d.style.height="200px"
+c.appendChild(d)
+document.getElementById(tr).appendChild(c)
+e=document.createElement("TR")
+tr="tr"+tcount
+e.id=tr
+tcount+=1
+document.getElementById(ads).appendChild(e)
+f=document.createElement("TD")
+f.style.border="1px solid black"
+g=document.createElement("input")
+g.type="text"
+g.value=lction
+g.placeholder="location"
+g.style.border="none"
+g.readOnly=true
+f.appendChild(g)
+document.getElementById(tr).appendChild(g)
+h=document.createElement("TR")
+tr="tr"+tcount
+h.id=tr
+tcount+=1
+document.getElementById(ads).appendChild(h)
+i=document.createElement("TD")
+i.style.border="1px solid black"
+j=document.createElement("input")
+j.value=type
+j.placeholder="Apartment"
+j.style.border="none"
+j.readOnly=true
+i.appendChild(j)
+document.getElementById(tr).appendChild(j)
+k=document.createElement("TR")
+tr="tr"+tcount
+k.id=tr
+tcount+=1
+document.getElementById(ads).appendChild(k)
+l=document.createElement("TD")
+l.style.border="1px solid black"
+m=document.createElement("input")
+m.value=head
+m.placeholder="Title"
+m.style.border="none"
+m.readOnly=true
+l.appendChild(m)
+document.getElementById(tr).appendChild(m)
+n=document.createElement("TR")
+tr="tr"+tcount
+n.id=tr
+tcount+=1
+document.getElementById(ads).appendChild(n)
+p=document.createElement("TD")
+p.style.border="1px solid black"
+q=document.createElement("BUTTON")
+t=document.createTextNode("Call")
+q.style.width="100px"
+q.appendChild(t)
+q.onclick=function(){calling()}
+p.appendChild(q)
+s=document.createTextNode(" ")
+p.appendChild(s)
+r=document.createElement("BUTTON")
+w=document.createTextNode("Email")
+r.style.width="100px"
+r.appendChild(w)
+r.onclick=function(){mail()}
+p.appendChild(r)
+document.getElementById(tr).appendChild(p)
+}
+</script>
+<br><br>
+<br><br>
+<br><br>
+<br><br>
+<table align="center" id="ad">
+</table>
+</body>
+</html>

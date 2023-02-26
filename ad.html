@@ -1,0 +1,188 @@
+<html>
+<head>
+<title> Post Ad </title>
+<style>
+div.x{position: absolute;
+   left :40%;}
+.y{background-color: rgb(185,25,185);
+   width:100%;
+   height:20%;}
+div.z{position: absolute;
+      left:45%;
+      top: 7%;
+      font-size: 40;}
+</style>
+</head>
+<body>
+<section class="y"> <b> <div class="z">POST AD </div></b></section>
+<br>
+<form id="ad">
+<div class="x">
+<select id="nature">
+<option value="sale">For Sale </option>
+<option value="rent">For Rent </option>
+</select>
+<select id="type">
+<option value="Apartment"> Apartment </option>
+<option value="Villa"> Villa </option>
+<option value="Th"> Townhouse </option>
+</select>
+<br>
+<table>
+<tr>
+<td>Title </td>
+<td><input type="text" id="head" size=56></td>
+</tr>
+<tr>
+<td> Description </td>
+<td><textarea rows=10 cols=55 id="desc"></textarea></td>
+</tr>
+<tr>
+<td>Amenities</td>
+<td> <input type="checkbox" id="amenities">Park </td>
+</tr>
+<tr>
+<td></td>
+<td> <input type="checkbox" id="amenities">Clubhouse </td>
+</tr>
+<tr>
+<td></td>
+<td> <input type="checkbox" id="amenities">24/7 Security </td>
+</tr>
+<tr>
+<td></td>
+<td><input type="checkbox" id="amenities">Car parking </td>
+</tr>
+<tr>
+<td></td>
+<td> <input type="checkbox" id="amenities">Gym </td>
+</tr>
+<tr>
+<td></td>
+<td> <input type="checkbox" id="amenities">Swimming Pool </td>
+</tr>
+<tr>
+<td></td>
+<td> <input type="checkbox" id="amenities">Jogging Track </td>
+</tr>
+<tr>
+<td> </td>
+<td><input type="checkbox" id="amenities">CCTV </td>
+</tr>
+<tr>
+<td>Price/Rent</td>
+<td> <input type="text" id="price"></td>
+</tr>
+<tr>
+<td> Image </td>
+<td><input type="text" id="img" placeholder="Enter your full path of image"></td>
+</tr>
+<tr>
+<td>Location</td>
+<td><select id="location"> 
+<option value="chennai"> Chennai </option>
+<option value="bangalore"> Bangalore </option>
+<option value="mumbai"> Mumbai </option>
+</select>
+</td>
+</tr>
+<tr>
+<td> Phone </td>
+<td> <input type="tel" id="phone"></td>
+</tr>
+<tr> 
+<td>Email</td>
+<td><input type="email" id="mail"></td>
+</tr>
+</table>
+<br>
+<input type="submit" onclick="store()" value="Post Ad"> 
+</div>
+</form>
+<script src=
+"https://www.gstatic.com/firebasejs/9.17.1/firebase-app.js">
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/firebase/7.14.1-0/firebase.js"></script>
+<script>
+let count=1
+const firebaseConfig = {
+    apiKey: "AIzaSyBY9tUM3SuWC4MQNBkVqqoSEr07R1xHclc",
+    authDomain: "realestate-3c316.firebaseapp.com",
+    databaseURL: "https://realestate-3c316-default-rtdb.firebaseio.com",
+    projectId: "realestate-3c316",
+    storageBucket: "realestate-3c316.appspot.com",
+    messagingSenderId: "267737955787",
+    appId: "1:267737955787:web:1a0e3c5e33a42abca58a4e"
+  };
+
+
+  // Initialize Firebase
+  firebase.initializeApp(firebaseConfig);
+  function store(){
+  var a='/Ad Details/-Ad'+count
+  var messagesRef = firebase.database()
+            .ref(a);
+        document.getElementById('ad')
+            .addEventListener('submit', submitForm);
+
+        function submitForm(e) {
+            e.preventDefault();
+            // Get values
+             var nature = getInputVal('nature');
+             var type = getInputVal('type');
+             var head= getInputVal('head');
+             var desc= getInputVal('desc');
+             var amenities= getInputVal('amenities');
+             var location= getInputVal('location');
+             var img= getInputVal('img');
+             var price= getInputVal('price');
+             var phone= getInputVal('phone');
+             var mail= getInputVal('mail');
+            console.log(nature,location);
+            messagesRef.on("value", function(snapshot){
+             if(snapshot.exists()){
+           
+             }
+             else{
+            saveMessage(nature, type, head, desc, amenities, price, location, img, mail, phone);
+            }})}
+        // Function to get form values
+        function getInputVal(id) {
+            return document.getElementById(id).value;
+        }
+ 
+        // Save message to firebase
+        function saveMessage(nature, type, head, desc, amenities, price, location, img, mail, phone) {
+             var newMessageRef = messagesRef.push();
+            newMessageRef.set({
+                nature: nature,
+                type: type,
+                head: head,
+                descr: desc,
+                amenities: amenities,
+                price: price,
+                location: location,
+                img: img,
+                phone: phone,
+                mail: mail,     
+            });
+    
+        }
+count+=1}
+/*const ref = firebase.database().ref('/Ad Details/');
+const query = ref.limitToLast(1);
+query.once("child_added").then((snapshot) => {
+  console.log(snapshot.key);
+});*/
+/*var ref = firebase.database().ref('/Ad Details/-Ad1');
+
+ref.on("value", function(snapshot) {
+ snapshot.forEach(function(childSnapshot){
+   console.log(childSnapshot.val().location);})
+}, function (error) {
+   console.log("Error: " + error.code);
+});*/
+</script>
+
+</body>
+</html> 

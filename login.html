@@ -1,0 +1,186 @@
+<html>
+<head>
+<title> Login </title>
+</head>
+<style>
+.x{background-color: rgb(185,25,185);
+   width:100%;
+   height:20%;}
+div.y{position: absolute;
+   top: 59%;
+   left: 47%;}
+</style>
+<body>
+<section class="x">
+</section>
+<script>
+function regist(){
+db=JSON.parse(localStorage.getItem('login')) || []
+name1=document.getElementById("fname").value
+name2=document.getElementById("sname").value
+email=document.getElementById("mail").value
+phone=document.getElementById("phone").value
+type=document.getElementById("drop").value
+uname=document.getElementById("userr").value
+pwd=document.getElementById("pwdr").value
+reg=[name1, name2, email, phone, type, uname, pwd]
+data=JSON.parse(localStorage.getItem('registrations')) || []
+data.push(reg)
+localStorage.setItem('registrations', JSON.stringify(data));
+window.open("profile.html", "_self")}
+
+function login(){
+db=JSON.parse(localStorage.getItem('registrations')) || []
+localStorage.removeItem("login");
+loginc=[]
+a=document.getElementById("username").value
+b=document.getElementById("pwd").value
+c=loginc.push([a, b])
+reg=[a, b]
+data=JSON.parse(localStorage.getItem('login')) || []
+data.push(reg)
+localStorage.setItem('login', JSON.stringify(data));
+for(i=0; i<db.length; i++){
+if(db[i][5]==data[0][0] && db[i][6]==data[0][1]){
+window.open("profile.html", "_self")
+break}}}
+
+function register(){
+document.getElementById("user").remove()
+document.getElementById("username").remove()
+document.getElementById("pwd").remove()
+document.getElementById("passwd").remove()
+document.getElementById("login").remove()
+document.getElementById("register").remove()
+document.getElementById("label1").remove()
+document.getElementById("head").innerText="Signup"
+b=document.createElement("input")
+b.type="text"
+b.id="fname"
+document.getElementById('reg2').appendChild(b);
+a=document.createElement("LABEL")
+c=document.createTextNode("First Name")
+a.appendChild(c)
+document.getElementById("reg1").appendChild(a)
+d=document.createElement("input")
+d.type="text"
+d.id="sname"
+document.getElementById('reg4').appendChild(d);
+e=document.createElement("LABEL")
+f=document.createTextNode("\tSecond Name\t")
+e.appendChild(f)
+document.getElementById("reg3").appendChild(e)
+g=document.createElement("input")
+g.type="email"
+g.id="mail"
+document.getElementById('regi2').appendChild(g);
+h=document.createElement("LABEL")
+i=document.createTextNode("Email")
+h.appendChild(i)
+document.getElementById("regi1").appendChild(h)
+j=document.createElement("input")
+j.type="tel"
+j.id="phone"
+document.getElementById('regi4').appendChild(j);
+k=document.createElement("LABEL")
+l=document.createTextNode("Phone")
+k.appendChild(l)
+document.getElementById("regi3").appendChild(l)
+m=document.createElement("select")
+m.id="drop"
+document.getElementById("regi5").appendChild(m)
+n=document.getElementById("drop")
+option=document.createElement("option")
+option.text="Owner"
+n.add(option)
+o=document.getElementById("drop")
+option=document.createElement("option")
+option.text="Tenant"
+o.add(option)
+p=document.getElementById("drop")
+option=document.createElement("option")
+option.text="Buyer"
+p.add(option)
+q=document.getElementById("drop")
+option=document.createElement("option")
+option.text="Agent"
+q.add(option)
+
+y=document.createElement("input")
+y.type="text"
+y.id="userr"
+document.getElementById('regi7').appendChild(y);
+z=document.createElement("LABEL")
+aa=document.createTextNode("Username")
+z.appendChild(aa)
+document.getElementById("regi6").appendChild(z)
+ab=document.createElement("input")
+ab.type="password"
+ab.id="pwdr"
+document.getElementById('regi9').appendChild(ab);
+ac=document.createElement("LABEL")
+ad=document.createTextNode("Password")
+ac.appendChild(ad)
+document.getElementById("regi8").appendChild(ac)
+document.getElementById("reg").style.display="block"
+}
+</script>
+<center>
+<h1 id="head">LOGIN</h1>
+<br>
+<table>
+<tr>
+<td><label id="user">Username</label></td>
+<td><input type="text" id="username" required></td>
+</tr>
+<tr>
+<td><label id="passwd">Password</label></td>
+<td><input type="password" id="pwd" required></td>
+</tr>
+<tr>
+<td> </td>
+<td><button onclick="login()" id="login"> Login </button></td>
+</tr>
+<tr>
+<td><label id="label1">Don't have an account?</label></td>
+</tr>
+<tr>
+<td><button id="register" onclick="register()"> Register</button></td>
+</tr>
+</table>
+<table>
+<tr>
+<td id="reg1"></td>
+<td id="reg2"></td>
+<td id="reg3"></td>
+<td id="reg4"></td>
+</tr>
+<tr>
+<td id="regi1"></td>
+<td id="regi2"></td>
+<td id="regi3"></td>
+<td id="regi4"></td>
+</tr>
+<tr>
+<td id="regi5"></td>
+</tr>
+<tr>
+<td id="regi6"></td>
+<td id="regi7"></td>
+</tr>
+<tr>
+<td id="regi8"></td>
+<td id="regi9"></td>
+</tr>
+<tr>
+<td></td>
+</tr> 
+</table>
+<form action="profile.html" id="regi10">
+</form>
+<div class="y">
+<button onclick="regist()" id="reg" hidden>Register</button>
+</div>
+</center>
+</body>
+</html>

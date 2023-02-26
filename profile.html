@@ -1,0 +1,96 @@
+<!--Home, Dashboard, post ad, view/manage ad-->
+<html>
+<head> 
+<title> Dashboard </title>
+<script language="javascript" src="trialerr.js"></script>
+</head>
+<style>
+div.z{position: absolute;
+      top: 2.5%;
+      left: 42%;}
+.y{background-color: rgb(185,25,185);
+   width:100%;
+   height:20%;}
+.x{background-color: rgb(185,25,185);
+   display:block;
+   width: 200px;
+   height: 50px;
+   border: 1px solid violet;}
+div.a{position: absolute;
+      top: 25%;
+      left: 33%;}
+</style>
+<body>
+<script>
+function logout(){
+localStorage.removeItem("login");
+home()}
+function add(){
+window.open("display.html", "_self")}
+function a(){
+window.open("ad.html", "_self")}
+function home(){
+window.open("index.html", "_self")}
+function y(){
+document.getElementById("change").disabled=false}
+function x(){
+a=JSON.parse(localStorage.getItem('registrations')) || []
+b=JSON.parse(localStorage.getItem('login')) || []
+for(i=0; i<a.length; i++){
+if(a[i][5]==b[0][0] && a[i][6]==b[0][1]){
+document.getElementById("name1").value=a[i][0]
+document.getElementById("name2").value=a[i][1]
+document.getElementById("email").value=a[i][2]
+document.getElementById("phone").value=a[i][3]
+document.getElementById("uname").value=a[i][5]
+document.getElementById("utype").value=a[i][4]
+break
+}}}
+
+</script>
+<section class="y">
+<div class="z">
+<center> <h1 style="font-size: 40"> MY PROFILE </h1> </center>
+</div>
+</section>
+<br>
+<button onclick="home()" class="x"> Home </button>
+<button onclick="x()" class="x"> Dashboard </button>
+<button onclick="a()" class="x"> Post Ad </button>
+<button onclick="add()" class="x"> View Ad </button>
+<button onclick="logout()" class="x"> Sign out </button>
+<center>
+<div class="a">
+<table>
+<tr> 
+<td>First Name</td>
+<td> <input type="text" size="30" id="name1" readonly></td>
+<td>Second name </td>
+<td><input type="text" size="30" id="name2" readonly></td>
+</tr>
+<tr>  </tr>
+<tr>  </tr>
+<tr>
+<td> Email </td>
+<td> <input onchange="y()" type="email" size="30" id="email"></td>
+<td> Phone </td>
+<td> <input onchange="y()" type="tel" id="phone" size="30"></td>
+</tr>
+<tr>  </tr>
+<tr>  </tr>
+<tr>
+<td> Username </td>
+<td> <input type="text" size="30" id="uname" readonly> </td>
+<td> User type </td>
+<td> <input type="text" size="30" id="utype" readonly></td>
+</tr>
+<tr> </tr>
+<tr> </tr>
+<tr>
+<td> <button id="change" disabled> Change </button> </td>
+</tr>
+</table>
+</div>
+</center> 
+</body> 
+</html>
